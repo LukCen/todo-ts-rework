@@ -1,4 +1,4 @@
-import { ListItem } from "./ListItem.js";
+import { ListItem } from "ListItem.js";
 const addTask = document.querySelector('.add-task');
 const userInput = document.querySelector('.user-input');
 const listItemContainer = document.querySelector('.list-item-container');
