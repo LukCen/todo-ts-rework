@@ -1,2 +1,1 @@
-import '/js/script.js'
-// import '/js/ListItem.js'
+import 'js/script.js'
