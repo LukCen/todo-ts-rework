@@ -1,4 +1,4 @@
-import { ListItem  } from "ListItem.js";
+import { ListItem  } from "./ListItem.js";
 
 
 const addTask: HTMLButtonElement | null = document.querySelector('.add-task');
