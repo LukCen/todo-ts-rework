@@ -1,9 +1,20 @@
 export class ListItem {
-    constructor(content, complete = false) {
+    constructor(content, complete = false, theme = '') {
         this.content = content;
         this.complete = complete;
         // the main container for the whole element itself
         this.element = document.createElement('li');
+        // applies currently chosen styles for light/dark mode to newly added elements
+        switch (theme) {
+            case 'dark':
+                this.element.classList.add('dark-mode');
+                this.element.classList.remove('light-mode');
+                break;
+            case 'light':
+                this.element.classList.add('light-mode');
+                this.element.classList.remove('dark-mode');
+                break;
+        }
         // part of the sliding-in animation, had to do it through TS cause using just SCSS classes didn't work for some reason
         setTimeout(() => {
             this.element.style.transform = 'translateX(0%)';

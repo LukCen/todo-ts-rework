@@ -2,13 +2,12 @@
 
 // gonna be default
 .dark-mode {
-    background-color: #241b33;
-    color: whitesmoke;
+    background-color: #241b33 !important;
+    color: whitesmoke !important;
 }
 
 // changable on demand
 .light-mode {
-    background-color: white;
-    border: 1px solid black;
-    color: black;
+    background-color: darkgray !important;
+    color: black !important;
 }

@@ -68,6 +68,8 @@
         display: grid;
         grid-column: 3/3;
         grid-row: 3/3;
+        min-width: 40px;
+        min-height: 20px;
         
     }
     & .header-button {
