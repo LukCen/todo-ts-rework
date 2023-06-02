@@ -73,6 +73,8 @@
   background: url("../img/bg-desktop-dark.jpg") no-repeat center/cover;
   display: grid;
   place-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .header-content {
@@ -81,6 +83,9 @@
   justify-content: space-between;
   align-items: center;
   row-gap: 10px;
+  border: 1px solid white;
+  position: relative;
+  z-index: 1;
 }
 .header-content p {
   font-size: 5rem;
@@ -116,7 +121,8 @@
   border: 2px solid #202020;
   background-color: rgb(97, 94, 94);
 }
-.header-content input::placeholder, .header-content input:-ms-input-placeholder, .header-content input ::-ms-input-placeholder {
+.header-content input::placeholder, .header-content input:-ms-input-placeholder,
+.header-content input ::-ms-input-placeholder {
   color: gray;
 }
 .header-content .add-task {
@@ -125,6 +131,10 @@
   grid-row: 3/3;
   min-width: 40px;
   min-height: 20px;
+  position: relative;
+}
+.header-content .add-task:hover + .tooltip-body {
+  opacity: 1;
 }
 .header-content .header-button {
   justify-self: right;
@@ -140,6 +150,7 @@
   transition: background-color 0.35s;
   border: none;
   border-radius: 15px;
+  position: relative;
 }
 .header-content .add-task:hover {
   background-color: rgb(49, 187, 49);
@@ -148,6 +159,41 @@
 .header-content i {
   font-size: 15px;
   color: white;
+}
+.header-content .tooltip-body {
+  background-color: #3b3744;
+  border: 1px solid #2b2929;
+  width: 70px;
+  height: 30px;
+  display: grid;
+  grid-column: 5/5;
+  grid-row: 3/3;
+  position: absolute;
+  right: -33%;
+  transform: translateX(-50%);
+  transition: opacity 0.5s ease-in-out;
+  z-index: 99;
+  opacity: 0;
+}
+.header-content .tooltip-body .tooltip-pointer {
+  border: 1px solid #2b2929;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  position: relative;
+  align-self: center;
+  left: -15%;
+  background-color: #3b3744;
+  z-index: -99;
+}
+.header-content .tooltip-body p {
+  font-size: 10px;
+  display: inline-block;
+  align-self: center;
+  position: fixed;
+  height: 100%;
+  background-color: #3b3744;
+  text-align: center;
 }
 
 @media screen and (max-width: 500px) {

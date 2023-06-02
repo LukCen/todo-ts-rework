@@ -1,4 +1,5 @@
 @import './variables';
+
 // colorful top of the page
 .header {
     min-height: 150px;
@@ -8,17 +9,27 @@
     display: grid;
     place-content: center;
 
+    // required for positioning other elements
+    position: relative;
+    z-index: 1;
+
 }
 
 
 // the box with the word and light/dark mode switcher button inside
-.header-content{
+.header-content {
 
     width: 400px;
     display: grid;
     justify-content: space-between;
     align-items: center;
     row-gap: 10px;
+    border: 1px solid white;
+
+    // required for properly positioning other elements - actually no its not required, but ill just leave it as is for now - it doesn't seem to affect much and I don't want to randomly ruin this on smaller screens
+    position: relative;
+    // ensures the element is at the top and isn't covered - also probably doesn't matter, but it doesn't break anything
+    z-index: 1;
 
     // contains the TODO word
     & p {
@@ -27,7 +38,7 @@
         color: whitesmoke;
         grid-column: 1/3;
         grid-row: 1/3;
-        
+
     }
 
     // will switch light/dark mode on later
@@ -42,6 +53,7 @@
         grid-column: 3/3;
         grid-row: 1/3;
     }
+
     // user inputs body of the task item here
     & input {
         grid-column: 1/3;
@@ -54,24 +66,39 @@
         border-radius: 2.5px;
         color: whitesmoke;
         outline: none;
-        
+
         &:focus {
             border: 2px solid #202020;
             background-color: rgb(97, 94, 94);
         }
+
         // placeholder text coloration, so its visible on a dark background, includes compatibility for multiple browsers
-        &::placeholder, &:-ms-input-placeholder, ::-ms-input-placeholder {
+        &::placeholder,
+        &:-ms-input-placeholder,
+        ::-ms-input-placeholder {
             color: gray;
         }
     }
+
     & .add-task {
         display: grid;
         grid-column: 3/3;
         grid-row: 3/3;
         min-width: 40px;
         min-height: 20px;
-        
+
+
+        // for positioning
+        position: relative;
+
+        &:hover+.tooltip-body {
+            // shows the block when its hovered over - opacity used so the animation can be smoothened with transition property
+            opacity: 1;
+
+        }
+
     }
+
     & .header-button {
         justify-self: right;
         cursor: pointer;
@@ -80,25 +107,72 @@
         width: 30px;
         display: grid;
         place-items: center;
-        
+
     }
-    
+
     .add-task {
         background-color: green;
         transition: background-color .35s;
         border: none;
         border-radius: 15px;
+        position: relative;
 
         &:hover {
-        background-color: rgb(49, 187, 49);
-        transition: background-color .35s;
+            background-color: rgb(49, 187, 49);
+            transition: background-color .35s;
         }
 
     }
+
     // tag for the little icon inside, custom tag from boxicons.com
     i {
         font-size: 15px;
         color: white;
     }
 
-};
+    .tooltip-body {
+        background-color: $element-bg-color;
+        border: 1px solid #2b2929;
+        width: 70px;
+        height: 30px;
+
+        display: grid;
+        grid-column: 5/5;
+        grid-row: 3/3;
+        // testing
+        position: absolute;
+        right: -33%;
+        transform: translateX(-50%);
+        // simple fade in/out animation when moused over and when disappearing
+        transition: opacity 0.5s ease-in-out;
+        z-index: 99;
+        opacity: 0;
+
+        // this is the pointy thing that points to the button. 
+        .tooltip-pointer {
+            border: 1px solid #2b2929;
+            height: 20px;
+            width: 20px;
+            transform: rotate(45deg);
+            position: relative;
+            align-self: center;
+            left: -15%;
+            background-color: $element-bg-color;
+            z-index: -99;
+
+        }
+
+        p {
+            font-size: 10px;
+            display: inline-block;
+            align-self: center;
+            position: fixed;
+
+            // fits inside of the entire tooltip-pointer element, and prevents its' borders from appearing inside and looking ugly
+            height: 100%;
+            background-color: $element-bg-color;
+            text-align: center;
+
+        }
+    }
+}

@@ -48,8 +48,6 @@ export class ListItem {
 
         this.paragraph.textContent = String(this.content)
 
-        
-
         this.checkbox.addEventListener('change', () => {
             switch(this.checkbox.checked){
                 case true:
